@@ -1,0 +1,19 @@
+version: "3.9"
+services:
+  app:
+    build: .
+    command: uvicorn main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "8080:8000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URL=mongodb://elevatus:elevatus@localhost:27017/elevatus
+  mongo:
+    image: "mongo:latest"
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=elevatus
+      - MONGO_INITDB_ROOT_PASSWORD=elevatus
+      - MONGO_INITDB_DATABASE=elevatus
