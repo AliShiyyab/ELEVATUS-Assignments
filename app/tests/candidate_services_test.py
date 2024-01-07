@@ -25,7 +25,7 @@ def test_create_and_delete_candidate(test_app, test_db):
     candidate_data = {
         "first_name": "Ali",
         "last_name": "Shiyyab",
-        "email": "aliakefsh@gmail.com",
+        "email": "aaaa@gmail.com",
         "uuid": "1",
         "career_level": "Mid-Senior",
         "job_major": "Software Engineer",
@@ -58,7 +58,7 @@ def test_create_and_delete_candidate(test_app, test_db):
     response = test_app.put("/candidate/1", json=updated_data)
     assert response.status_code == 201
 
-    response = test_app.delete("/candidate/{aliakefsh@gmail.com}")
+    response = test_app.delete("/candidate/aliakefsh@gmail.com")
     assert response.status_code == 204
 
 
