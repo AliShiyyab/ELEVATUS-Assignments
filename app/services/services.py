@@ -108,11 +108,11 @@ class UserService:
         try:
             return await self.user_repository.create_user(user)
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error creating user: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Error creating user: {str(e)}") from e
 
     async def get_all_user(self):
         try:
             return await self.user_repository.get_all()
         except Exception as e:
-            raise HTTPException(status_code=500, detail=f"Error creating user: {str(e)}")
+            raise HTTPException(status_code=500, detail=f"Error creating user: {str(e)}") from e
 

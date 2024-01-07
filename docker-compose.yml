@@ -1,19 +1,29 @@
 version: "3.9"
 services:
   app:
-    build: .
+    build: ./app
     command: uvicorn main:app --host 0.0.0.0 --port 8000
     ports:
       - "8080:8000"
     depends_on:
       - mongo
     environment:
-      - MONGO_URL=mongodb://elevatus:elevatus@localhost:27017/elevatus
+      - MONGO_URL=mongodb://elevatus:elevatus@mongo:27017/elevatus
+
   mongo:
-    image: "mongo:latest"
+    image: "mongo:4.0"
     ports:
       - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=elevatus
       - MONGO_INITDB_ROOT_PASSWORD=elevatus
       - MONGO_INITDB_DATABASE=elevatus
+      - MONGODB_USERNAME=test
+      - MONGODB_PASSWORD=test123
+      - MONGODB_DATABASE=test1
+    volumes:
+      - mongo-data:/data/db
+      - ./mongo-init-scripts.js:/docker-entrypoint-initdb.d/mongo-init-scripts.js
+
+volumes:
+  mongo-data:
