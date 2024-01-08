@@ -18,9 +18,6 @@ services:
       - MONGO_INITDB_ROOT_USERNAME=elevatus
       - MONGO_INITDB_ROOT_PASSWORD=elevatus
       - MONGO_INITDB_DATABASE=elevatus
-      - MONGODB_USERNAME=test
-      - MONGODB_PASSWORD=test123
-      - MONGODB_DATABASE=test1
     volumes:
       - mongo-data:/data/db
       - ./mongo-init-scripts.js:/docker-entrypoint-initdb.d/mongo-init-scripts.js
